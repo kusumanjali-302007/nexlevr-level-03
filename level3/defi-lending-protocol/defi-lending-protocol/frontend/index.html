@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lending Protocol (testnet demo)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <h1>Lending Protocol</h1>
+      <p>Educational demo. Test tokens only, never real money.</p>
+    </div>
+    <div class="top-actions">
+      <label class="net-select">Network
+        <select id="networkSelect" aria-label="Select the network the app should use"></select>
+      </label>
+      <span id="walletNet" class="pill" title="Network your wallet is connected to">Wallet: not connected</span>
+      <button id="connectBtn" class="btn primary">Connect MetaMask</button>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" role="alert" hidden></div>
+
+  <main class="layout">
+    <section class="left" aria-label="Your position">
+      <div class="card" id="positionCard">
+        <h2>Your position</h2>
+        <p class="live" id="liveBlock" aria-live="off">Live updates: waiting for wallet</p>
+        <dl class="stats">
+          <div><dt>Collateral value</dt><dd id="sCollateral">–</dd></div>
+          <div><dt>Debt</dt><dd id="sDebt">–</dd></div>
+          <div><dt>Borrow limit</dt><dd id="sLimit">–</dd></div>
+          <div><dt>Collateral ratio</dt><dd id="sRatio">–</dd></div>
+        </dl>
+
+        <div class="gauge" id="gauge" aria-live="polite">
+          <div class="gauge-track" id="gaugeTrack">
+            <span class="zone danger" id="zoneDanger"></span>
+            <span class="zone warn" id="zoneWarn"></span>
+            <span class="zone safe" id="zoneSafe"></span>
+            <span class="marker" id="gaugeMarker" hidden></span>
+          </div>
+          <div class="gauge-scale"><span>100%</span><span>200%</span><span>300%+</span></div>
+          <p class="gauge-note" id="gaugeNote">Connect your wallet to see how safe your loan is.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Markets</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Token</th><th>Price</th><th>Max borrow vs collateral</th><th>Wallet</th><th>Deposited</th><th>Collateral</th><th>Borrowed</th><th>Pool liquidity</th></tr>
+            </thead>
+            <tbody id="marketRows"><tr><td colspan="8" class="muted">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="right" aria-label="Actions">
+      <div class="card">
+        <h2>Actions</h2>
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" data-action="deposit" aria-selected="true">Deposit</button>
+          <button role="tab" data-action="depositCollateral" aria-selected="false">Add collateral</button>
+          <button role="tab" data-action="borrow" aria-selected="false">Borrow</button>
+          <button role="tab" data-action="repay" aria-selected="false">Repay</button>
+          <button role="tab" data-action="withdraw" aria-selected="false">Withdraw</button>
+          <button role="tab" data-action="withdrawCollateral" aria-selected="false">Remove collateral</button>
+        </div>
+        <p class="hint" id="actionHint"></p>
+        <div class="field">
+          <label for="assetSelect">Token</label>
+          <select id="assetSelect"></select>
+        </div>
+        <div class="field">
+          <label for="amountInput">Amount</label>
+          <div class="amount-row">
+            <input id="amountInput" type="text" inputmode="decimal" autocomplete="off" placeholder="0.0">
+            <button id="maxBtn" class="btn small" type="button">Max</button>
+          </div>
+        </div>
+        <button id="submitBtn" class="btn primary wide" disabled>Connect wallet first</button>
+      </div>
+
+      <div class="card">
+        <h2>Test tokens</h2>
+        <p class="hint">These tokens are free and worthless. Mint some to try the protocol.</p>
+        <div class="mint-row" id="mintRow"></div>
+      </div>
+
+      <div class="card">
+        <h2>Activity</h2>
+        <ul class="log" id="log" aria-live="polite"><li class="muted">Nothing yet. Transactions and errors show up here.</li></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Not audited and not production-ready. Prices are set manually by the protocol owner.</footer>
+
+  <script src="vendor/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

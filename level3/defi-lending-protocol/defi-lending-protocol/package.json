@@ -1,0 +1,31 @@
+{
+  "name": "defi-lending-protocol",
+  "version": "1.0.0",
+  "description": "Educational DeFi lending and borrowing protocol (Hardhat + Foundry). Not production-ready.",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "test:fuzz": "forge test --match-path test-foundry/DeFiLendingProtocolFuzz.t.sol -vv",
+    "test:invariant": "forge test --match-path test-foundry/DeFiLendingProtocolInvariant.t.sol -vv",
+    "test:foundry": "forge test -vv",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "frontend": "npx http-server frontend -p 8080 -c-1",
+    "gas:compare": "hardhat run scripts/gas-compare.js",
+    "gas:foundry": "forge test --match-path test-foundry/DeFiLendingProtocolFuzz.t.sol --gas-report",
+    "test:all": "hardhat test && forge test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.17",
+    "hardhat-gas-reporter": "^1.0.10",
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.2"
+  }
+}

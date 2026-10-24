@@ -1,0 +1,22 @@
+{
+  "name": "layer2-rollup-prototype",
+  "version": "1.0.0",
+  "description": "Educational Layer 2 rollup prototype: off-chain execution, batching, and on-chain batch commitments (NOT production-grade).",
+  "private": true,
+  "scripts": {
+    "node": "hardhat node",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "client": "node src/rollup.js",
+    "test": "hardhat test",
+    "frontend": "node server.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0"
+  }
+}
